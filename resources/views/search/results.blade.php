@@ -50,7 +50,7 @@
                 </div>
             </div>
             @endforeach
-            {!! $results->links('pagination::bootstrap-4') !!}
+        
 
             <!-- /shop -->
         </div>

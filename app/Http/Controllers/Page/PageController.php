@@ -88,7 +88,7 @@ class PageController extends Controller
     public function search(Request $request)
     {
         $query = $request->input('query');
-        $results = Product::where('nameProduct', 'like', "%$query%")->paginate(4);
+        $results = Product::where('nameProduct', 'like', "%$query%")->get();
 
         if (auth()->check()) {
             $countCart = Cart::select('quantity')->where('userId', '=', auth()->user()->id)->sum('quantity');
