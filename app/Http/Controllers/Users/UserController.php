@@ -74,8 +74,8 @@ class UserController extends Controller
             ->select('users.nickname', 'reviews.*')
             ->where('reviews.sellerId', $sellerId)
             ->paginate(4);
-       
-        return view('reviewsSeller', compact('countCart', 'countWishlist', 'sellerId', 'reviews'));
+        $countReviews = Review::select('*')->where('userId', auth()->user()->id)->where('sellerId', $sellerId)->count();
+        return view('reviewsSeller', compact('countCart', 'countWishlist', 'sellerId', 'reviews', 'countReviews'));
     }
 
     /**
@@ -105,7 +105,7 @@ class UserController extends Controller
         ->select('users.nickname', 'reviews.*')
         ->where('reviews.sellerId', $sellerId)
         ->paginate(4);
-       
-        return view('reviewsSeller', compact('countCart', 'countWishlist', 'sellerId','reviews'));
+        $countReviews = Review::select('*')->where('userId', auth()->user()->id)->where('sellerId', $sellerId)->count();
+        return view('reviewsSeller', compact('countCart', 'countWishlist', 'sellerId','reviews', 'countReviews'));
     }
 }
