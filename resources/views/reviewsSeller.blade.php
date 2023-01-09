@@ -47,6 +47,7 @@
                             {!! $reviews->links('pagination::bootstrap-4') !!}
                           
                         </div>
+                        @if ($sellerId != Auth::user()->id)
                         <div class="col-md-3" style="margin-top:-35px;margin-left:-10%;">
                             <div id="review-form">
                                 <form method="POST" action="{{ route('reviewsSeller', $sellerId) }}">
@@ -64,6 +65,7 @@
                                 </form>
                             </div>
                         </div>
+                        @endif
                     </div>
 
                 </div>
