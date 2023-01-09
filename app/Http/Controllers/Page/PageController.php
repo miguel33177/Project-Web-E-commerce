@@ -58,6 +58,11 @@ class PageController extends Controller
         return view('aboutUs');
     }
 
+    /**
+     * Loads products in the page for given category.
+     * @param mixed $nameCategory
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function category($nameCategory)
     {
 

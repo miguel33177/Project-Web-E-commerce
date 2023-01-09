@@ -52,7 +52,7 @@ Online shopping | Checkout
                                 <input type="checkbox" id="shiping-address">
                                 <label for="shiping-address">
                                     <span></span>
-                                    Ship to a diffrent address?
+                                    Ship to a different address?
                                 </label>
                                 <div class="caption">
                                     <form method="POST" action="{{ route('addResidenceinCheckout', Auth::user()->name) }}">
