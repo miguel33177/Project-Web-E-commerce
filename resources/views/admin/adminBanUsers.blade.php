@@ -20,7 +20,7 @@
         <p>{{ $message }}</p>
     </div>
     @endif
-    <a href="{{url()->previous()}}"><button class="buttonBack">Back</button></a>
+
     <table class="table table-bordered" id="tableBanUser">
         <thead>
             <tr>
