@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Product;
+use App\Models\Review;
 use Illuminate\Http\Request;
 use App\Models\Residence;
 use App\Models\User;
@@ -32,7 +33,7 @@ class UserController extends Controller
         $countWishlist = Wishlist::select('*')->where('userId', '=', auth()->user()->id)->count();
         $countCart = Cart::select('quantity')->where('userId', '=', auth()->user()->id)->sum('quantity');
         $categories = Category::all();
-        return view('auth.passwords.newPassword', compact('countWishlist', 'countCart','categories'));
+        return view('auth.passwords.newPassword', compact('countWishlist', 'countCart', 'categories'));
     }
 
     /**
@@ -58,5 +59,27 @@ class UserController extends Controller
         } else {
             return redirect()->route('resetPassword')->with('failed', 'Error changing password.');
         }
-    }   
+    }
+    public function reviewsSeller($sellerId)
+    {
+        $countCart = Cart::select('quantity')->where('userId', '=', auth()->user()->id)->sum('quantity');
+        $countWishlist = Wishlist::select('*')->where('userId', '=', auth()->user()->id)->count();
+
+        return view('reviewsSeller', compact('countCart', 'countWishlist', 'sellerId'));
+    }
+
+    public function addReviewsSeller(Request $request, $sellerId)
+    {
+        $review = new Review();
+        $review->userId = auth()->user()->id;
+        $review->sellerId = $sellerId;
+        $review->review = $request['rating'];
+        $review->comment = $request['comment'];
+        $review->save();
+
+        $countCart = Cart::select('quantity')->where('userId', '=', auth()->user()->id)->sum('quantity');
+        $countWishlist = Wishlist::select('*')->where('userId', '=', auth()->user()->id)->count();
+
+        return view('reviewsSeller', compact('countCart', 'countWishlist', 'sellerId'));
+    }
 }

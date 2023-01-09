@@ -56,6 +56,8 @@ Route::middleware(['auth','verified'])->group(function () {
     Route::get('/send-email/{order}', [PdfEmailController::class, 'sendMailWithPDF'])->name('sendMailWithPDF');
     Route::put('/updatePasword', [UserController::class, 'updatePassword'])->name('updatePassword');
     Route::post('/download-pdf/{idOrder}', [OrderController::class, 'downloadPdf'])->name('downloadPdf');
+    Route::get('/reviews/{idSeller}', [UserController::class, 'reviewsSeller'])->name('reviewsSeller');
+    Route::post('/reviews/{idSeller}', [UserController::class, 'addReviewsSeller'])->name('addReviewsSeller');
 });
 
 Route::get('/resetPassword', [UserController::class, 'resetPassword'])->name('resetPassword');

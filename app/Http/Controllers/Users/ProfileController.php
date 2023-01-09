@@ -8,6 +8,7 @@ use App\Models\Residence;
 use App\Models\User;
 use App\Models\Cart;
 use App\Models\Category;
+use App\Models\Review;
 use Illuminate\Http\Request;
 use App\Models\Wishlist;
 
@@ -28,15 +29,19 @@ class ProfileController extends Controller
         $user = User::select('*')->where('nickname', $nickUser)->first();
         $userProducts = Product::select('*')->where('userId', $user->id)->paginate(4);
         $photoExists = false;
+        $countReviews = Review::select('*')->where('sellerId', $user->id)->count();
+        $ratingAverage = Review::select('*')->where('sellerId', $user->id)->avg('review');
+        $reviewAverage = number_format($ratingAverage, 0, '.', '');
+
         if (User::select('photo')->where('nickname', $nickUser)->first()->photo != NULL) {
-            $photoExists = true;
+            $photoExists = true;                                                                //see view to understand
         }
         if (auth()->check()) {
             $countWishlist = Wishlist::select('*')->where('userId', '=', auth()->user()->id)->count();
             $countCart = Cart::select('quantity')->where('userId', '=', auth()->user()->id)->sum('quantity');
-            return view('myProfile', compact('user', 'userProducts', 'photoExists', 'countWishlist', 'countCart'));
+            return view('myProfile', compact('user', 'userProducts', 'photoExists', 'countWishlist', 'countCart', 'countReviews','reviewAverage'));
         }
-        return view('myProfile', compact('user', 'userProducts', 'photoExists'));
+        return view('myProfile', compact('user', 'userProducts', 'photoExists', 'countReviews', 'reviewAverage'));
     }
     /**
      * Function to add profile picture to the user

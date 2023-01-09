@@ -80,7 +80,7 @@ class WishlistController extends Controller
 
         $products = DB::table('products')
         ->join('categories', 'categories.id', 'products.categoryId')
-        ->select('products.*','categories.category')
+        ->select('products.*', 'categories.category')
         ->where('products.id', '=', $idProduct)
         ->get();
         $comments = Comment::select('*')->where('idProduct', '=', $idProduct)->paginate(3);
@@ -96,8 +96,8 @@ class WishlistController extends Controller
         $countWishlist = Wishlist::select('*')->where('userId', '=', auth()->user()->id)->count();
         $countCart = Cart::select('quantity')->where('userId', '=', auth()->user()->id)->sum('quantity');
         $categories = Category::all();
-        $name = Product::select('*')->where('id', $idProduct)->first()->nameProduct;
+        $nameProduct = Product::select('*')->where('id', $idProduct)->first()->nameProduct;
 
-        return view('product', compact('products', 'comments', 'countComments', 'wish', 'userNick', 'countWishlist', 'countCart', 'categories','name'));
+        return view('product', compact('products', 'comments', 'countComments', 'wish', 'userNick', 'countWishlist', 'countCart', 'categories', 'nameProduct'));
     }
 }
