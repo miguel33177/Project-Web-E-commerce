@@ -29,11 +29,8 @@ class ZerarViewsProducts extends Command
      */
     public function handle()
     {
-        $products = Product::all();
-        foreach ($products as $product) {
-            $product->views = 0;
-            $product->save();
-        }
+       DB::table('products')->update(['views' => 0]);
+        
         return Command::SUCCESS;
     }
 }

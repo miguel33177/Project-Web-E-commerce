@@ -60,6 +60,11 @@ class UserController extends Controller
             return redirect()->route('resetPassword')->with('failed', 'Error changing password.');
         }
     }
+    /**
+     * Allows user to view seller reviews and access to links that allow you to check the profile of the person who commented.
+     * @param mixed $sellerId
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function reviewsSeller($sellerId)
     {
         $countCart = Cart::select('quantity')->where('userId', '=', auth()->user()->id)->sum('quantity');
@@ -73,6 +78,12 @@ class UserController extends Controller
         return view('reviewsSeller', compact('countCart', 'countWishlist', 'sellerId', 'reviews'));
     }
 
+    /**
+     * Allows user to review a seller.
+     * @param Request $request
+     * @param mixed $sellerId
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function addReviewsSeller(Request $request, $sellerId)
     {
         $request->validate([
