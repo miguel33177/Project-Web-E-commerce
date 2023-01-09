@@ -43,6 +43,7 @@ Online shopping | Order details
 
 
     <table class="table" id="table">
+       <th>
         <tbody>
             <tr>
                 <td><b>Sub-Total</b></td>
@@ -57,6 +58,7 @@ Online shopping | Order details
                 <td>€ {{ $product->priceTotal }}</td>
             </tr>
         </tbody>
+    </th>
     </table>
 
   <div class="shipToOrder"style="background-color: rgb(237, 240, 242)"> 
