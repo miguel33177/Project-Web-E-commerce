@@ -145,7 +145,6 @@ class ProductController extends Controller
         $productViews = Product::find($idProduct);
         $productViews->views = $productViews->views + 1;
         $productViews->save();
-        $comments = Comment::select('*')->where('idProduct', '=', $idProduct)->paginate(3);
         $countComments = Comment::select('*')->where('idProduct', '=', $idProduct)->count();
         if (auth()->check()) {
             $wish = false;

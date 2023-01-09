@@ -68,28 +68,33 @@ class UserController extends Controller
             ->join('users', 'users.id', 'reviews.userId')
             ->select('users.nickname', 'reviews.*')
             ->where('reviews.sellerId', $sellerId)
-            ->paginate(3);
+            ->paginate(4);
        
         return view('reviewsSeller', compact('countCart', 'countWishlist', 'sellerId', 'reviews'));
     }
 
     public function addReviewsSeller(Request $request, $sellerId)
     {
+        $request->validate([
+            'review' => ['required', 'min:0', 'max:10'],
+            'comment' => ['required', 'string']
+        ]);
+
         $review = new Review();
         $review->userId = auth()->user()->id;
         $review->sellerId = $sellerId;
-        $review->review = $request['rating'];
+        $review->review = $request['review'];
         $review->comment = $request['comment'];
         $review->save();
 
         $countCart = Cart::select('quantity')->where('userId', '=', auth()->user()->id)->sum('quantity');
         $countWishlist = Wishlist::select('*')->where('userId', '=', auth()->user()->id)->count();
-        $reviews = DB::table('reviews')
-        ->join('users', 'users.id', 'reviews.userId')
+        $reviews = DB::table('users')
+        ->join('reviews', 'reviews.userId', 'users.id' )
         ->select('users.nickname', 'reviews.*')
         ->where('reviews.sellerId', $sellerId)
-        ->paginate(3);
-
+        ->paginate(4);
+       
         return view('reviewsSeller', compact('countCart', 'countWishlist', 'sellerId','reviews'));
     }
 }
