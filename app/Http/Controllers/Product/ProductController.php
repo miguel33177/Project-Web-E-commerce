@@ -117,7 +117,6 @@ class ProductController extends Controller
         $product->description = $request['description'];
         $product->price = $request['price'];
         $product->state = $request['state'];
-        $product->location = $request['location'];
         $product->save();
 
         return redirect()->route('myProducts', $nameUser)->with('success', 'Product updated successfully');
