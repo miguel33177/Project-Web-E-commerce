@@ -2,7 +2,7 @@
 
 @section('content')
 @if (session('resent'))
-    <div  class="alert alert-success" role="alert">
+    <div  class="alert alert-success" role="alert" style="width: 40%; margin-left:100px;margin-top:10px;">
         {{ __('A fresh verification link has been sent to your email address.') }}
     </div>
     @endif

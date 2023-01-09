@@ -78,15 +78,13 @@ Online shopping | Edit Product
                                 <select class="inputSelectCountry" class="inputSelectCountry"  value="{{ $products->state }}"name="state" id="state">
                                     <option value="new">New</option>
                                     <option value="used">Used</option>
-
                                 </select>
                             </div>
                         </div>
 
                         </div>
 
-                       
-
+        
                         <div class="row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="buttonRegister">
