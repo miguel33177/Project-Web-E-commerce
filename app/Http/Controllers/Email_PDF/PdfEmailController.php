@@ -10,7 +10,8 @@ use Mail;
 
 class PdfEmailController extends Controller
 {
-    //Function to send email with pdf attached after successful payment. In addition, it saves the pdf in the database for each order.
+    //Function to send email with pdf attached after successful payment. 
+    //In addition, it saves the pdf in the database for each order.
     public function sendMailWithPDF($orderId)
     {
         $data["email"] = "test@gmail.com";
