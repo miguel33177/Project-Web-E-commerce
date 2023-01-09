@@ -16,10 +16,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->call(function () {
-           $product = Product::all();
-           $product->update(['views' => 0]);
-        })->everyMinute();
+        $schedule->command('ZerarViewsProdutos')
+        ->dailyAt('00:00');
     }
 
     /**
