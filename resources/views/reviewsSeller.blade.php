@@ -25,23 +25,24 @@
                     <div class="row">
                         <!-- Reviews -->
                         <div class="col-md-8" style="margin-left:5%">
+                            @foreach ($reviews as $review)
                             <div id="reviews">
                                 <ul class="reviews">
                                     <li>
                                         <div class="review-heading">
-                                            <h5 class="name">ds</h5>
-                                            <p class="date">dsds</p>
+                                            <h5 class="name">{{ $review->nickname }}</h5>
+                                            <p class="date">{{ $review->created_at }}</p>
                                             <div class="review-rating">Rating:
-                                                ds/10
+                                                {{ $review->review }}/10
                                             </div>
                                         </div>
                                         <div class="review-body">
-                                            <p>ds</p>
+                                            <p> {{ $review->comment }}</p>
                                         </div>
                                     </li>
                                 </ul>
                             </div>
-
+                            @endforeach
                         </div>
                         <div class="col-md-3" style="margin-top:-35px;margin-left:-10%;">
                             <div id="review-form">

@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Product;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 
@@ -28,7 +29,11 @@ class ZerarViewsProducts extends Command
      */
     public function handle()
     {
-        DB::table('products')->update(['views' => 0]);
+        $products = Product::all();
+        foreach ($products as $product) {
+            $product->views = 0;
+            $product->save();
+        }
         return Command::SUCCESS;
     }
 }
