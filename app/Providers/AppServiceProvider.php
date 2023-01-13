@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Http\Controllers\MessagesController as ControllersMessagesController;
 use App\Models\Category;
+use Chatify\Http\Controllers\MessagesController;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
@@ -15,7 +17,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(MessagesController::class, ControllersMessagesController::class);
     }
 
     /**
