@@ -24,11 +24,12 @@ class AdminController extends Controller
     */
    public function adminView()
    {
-    $countWishlist = Wishlist::select('*')->where('userId', '=', auth()->user()->id)->count();
-    $countCart = Cart::select('quantity')->where('userId', '=', auth()->user()->id)->sum('quantity');
-    
-    return view('admin.adminView', compact('countWishlist', 'countCart'));
+      $countWishlist = Wishlist::select('*')->where('userId', '=', auth()->user()->id)->count();
+      $countCart = Cart::select('quantity')->where('userId', '=', auth()->user()->id)->sum('quantity');
+      
+      return view('admin.adminView', compact('countWishlist', 'countCart'));
    }
+
 
    /**
     * VIEW of all users in the database, except admin users.
