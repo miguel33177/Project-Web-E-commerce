@@ -50,7 +50,7 @@
                                 <div> <img src="{{ asset($user->photo) }}" class="img img-responsive"></div>
                             @elseif ($photoExists == false)
                                 <img src="{{ URL::asset('assets/img/userLogoDefault.png') }}" class="img img-responsive"
-                                    alt="">
+                                    alt="Photo Profile">
                             @else
                             @endif
                         </div>
