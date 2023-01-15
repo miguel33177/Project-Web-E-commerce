@@ -28,6 +28,7 @@
     </table>
 
     <table class="table table-bordered" id="table">
+        <th>
         <tbody>
             <tr>
                 <td><b>Sub-Total</b></td>
@@ -42,6 +43,7 @@
                 <td>€ {{ $product->priceTotal }}</td>
             </tr>
         </tbody>
+        </th>
     </table>
 
     <div>Ship to:
