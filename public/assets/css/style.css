@@ -1840,7 +1840,7 @@ textarea.input {
 
 .review-form .input-rating .stars>label:before {
   content: "\f006";
-  font-family: FontAwesome;
+
   color: #E4E7ED;
   -webkit-transition: 0.2s all;
   transition: 0.2s all;
@@ -1956,7 +1956,7 @@ textarea.input {
 
 .newsletter form:after {
   content: "\f003";
-  font-family: FontAwesome;
+
   position: absolute;
   font-size: 160px;
   color: #E4E7ED;
@@ -2102,7 +2102,7 @@ textarea.input {
 }
 
 .slick-prev:before, .slick-next:before {
-  font-family: FontAwesome;
+
   color: #2B2D42;
 }
 
