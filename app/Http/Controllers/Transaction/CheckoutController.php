@@ -37,7 +37,7 @@ class CheckoutController extends Controller
         $priceTotal = Cart::select('price')->where('userId', '=', auth()->user()->id)->sum('price') + $shipping;
 
         if ($priceTotal == $shipping) {
-            return redirect()->route('myCart', compact('countWishlist', 'countCart', 'productsCart', 'priceTotal', 'shipping', 'categories'))->with('failed', 'Your cart is empty!');
+            return redirect()->route('myCart', compact('countWishlist', 'countCart', 'productsCart', 'priceTotal', 'shipping'))->with('failed', 'Your cart is empty!');
         }
         return view('checkout', compact('countCart', 'countWishlist', 'productsCart', 'residencesUser', 'shipping', 'priceTotal'));
     }
