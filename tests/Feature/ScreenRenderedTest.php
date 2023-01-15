@@ -37,6 +37,17 @@ class ScreenRenderedTest extends TestCase
         $response = $this->get('/aboutUs');
         $response->assertStatus(200);
     }
+    public function testGetSearchPage()
+    {
+        $response = $this->get('/search');
+        $response->assertStatus(200);
+    }
+
+    public function payment()
+    {
+        $response = $this->get('/payment');
+        $response->assertStatus(200);
+    }
 
     public function testGetMyAccount()
     {

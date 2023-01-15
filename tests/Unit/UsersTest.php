@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
@@ -90,6 +91,29 @@ class UsersTest extends TestCase
     }
 
     public function testChangePassword(){
+        $user = User::create([
+            'nickname' => 'test',
+            'name' => 'test',
+            'nationality' => 'test',
+            'lastName' => 'test',
+            'email' => 'test@gmail.com',
+            'password' => Hash::make('test')
+        ]);
 
+        DB::table('users')->where('nickname', 'test')->limit(1)->update(array('email_verified_at' => '2023-01-07 20:48:38.000'));
+
+        $this->post('/login', [
+            'email' => 'test@gmail.com',
+            'password' => 'test'
+        ]);
+
+        $this->assertAuthenticated();
+
+        $response = $this->post('/updatePasword', [
+            'oldPassword' => 'test',
+            'password' => 'newpassword',
+            'confirmpassword' => 'newpassword'
+        ]);
+        
     }
 }
