@@ -47,7 +47,7 @@
                         </div>
                         <div class="form-group">
                             @if ($photoExists == true)
-                                <div> <img src="{{ asset($user->photo) }}" class="img img-responsive"></div>
+                                <div> <img src="{{ asset($user->photo) }}" class="img img-responsive" alt="Photo Profile"></div>
                             @elseif ($photoExists == false)
                                 <img src="{{ URL::asset('assets/img/userLogoDefault.png') }}" class="img img-responsive"
                                     alt="Photo Profile">
