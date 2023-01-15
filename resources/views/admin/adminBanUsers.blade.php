@@ -22,6 +22,7 @@
     @endif
 
     <table class="table table-bordered" id="tableBanUser">
+        <caption></caption>
         <thead>
             <tr>
                 <th>User ID</th>

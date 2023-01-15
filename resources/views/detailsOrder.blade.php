@@ -18,6 +18,7 @@ Online shopping | Order details
     </div>
 <div>
     <table class="table" id="table">
+        <caption></caption>
         <thead>
             <tr>
                 <th scope="col">Qty</th>
@@ -43,6 +44,7 @@ Online shopping | Order details
 
 
     <table class="table" id="table">
+        <caption></caption>
        <th>
         <tbody>
             <tr>
@@ -62,6 +64,7 @@ Online shopping | Order details
     </table>
 
   <div class="shipToOrder"style="background-color: rgb(237, 240, 242)"> 
+    <caption></caption>
     <h4>Ship to</h4>
     @foreach($orders as $order)
     <p>{{$order->address}}</p>

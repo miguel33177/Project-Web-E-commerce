@@ -85,6 +85,7 @@ Online shopping | My Residences
                     <h4 class="title" id="myResidencesSection">My Residences</h4>
                 </div>
                 <table class="table" style="margin-top: 10px">
+                    <caption></caption>
                     <thead>
                         <tr>
                             <th scope="col">Address</th>
