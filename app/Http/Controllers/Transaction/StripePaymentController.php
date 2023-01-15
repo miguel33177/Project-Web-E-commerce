@@ -7,6 +7,7 @@ use App\Models\Order;
 use App\Http\Controllers\Controller;
 use App\Models\Ordered;
 use App\Models\Product;
+use Exception;
 use Illuminate\Http\Request;
 use Validator;
 use Stripe;
