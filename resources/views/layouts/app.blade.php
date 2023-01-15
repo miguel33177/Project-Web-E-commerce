@@ -26,7 +26,9 @@
     <link rel="stylesheet" href="{{ URL ::asset('assets/css/style.css')}}" type="text/css" />
 
    
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script> 
+
+  
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <body>
     @include ('includes.header')
