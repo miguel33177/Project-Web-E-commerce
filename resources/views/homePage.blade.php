@@ -124,7 +124,7 @@ Online shopping | Home page
             <div class="col-md-3 col-xs-6">
                 <div class="product">
                     <div class="product-img">
-                        <img src="{{ asset($productMostViewed->photo) }}" class="img img-responsive" width='110' height='110'/>
+                        <img src="{{ asset($productMostViewed->photo) }}" class="img img-responsive" width='110' height='110' alt="Photo Product"/>
                         <div class="product-label">
                             <span class="new">{{$productMostViewed->state}}</span>
                         </div>
