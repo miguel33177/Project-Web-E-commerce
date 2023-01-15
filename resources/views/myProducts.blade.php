@@ -24,6 +24,7 @@ Online shopping | My products
     @endif
 
 <table class="table" id="tableBanUser">
+    <caption></caption>
     <thead>
         <tr>
             <th scope="col">#</th>

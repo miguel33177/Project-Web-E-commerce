@@ -9,6 +9,7 @@
     <h2>Details for your order #{{$product->id}}</h2>
     @endforeach
     <table class="table table-bordered" id="table">
+        <caption></caption>
         <thead>
             <tr>
                 <th scope="col">Qty</th>
@@ -28,6 +29,7 @@
     </table>
 
     <table class="table table-bordered" id="table">
+        <caption></caption>
         <th>
         <tbody>
             <tr>
