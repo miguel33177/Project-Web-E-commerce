@@ -32,6 +32,12 @@ class ScreenRenderedTest extends TestCase
         $response->assertStatus(200);
     }
 
+    public function testGetAboutUsPage()
+    {
+        $response = $this->get('/aboutUs');
+        $response->assertStatus(200);
+    }
+
     public function testGetMyAccount()
     {
         User::create([

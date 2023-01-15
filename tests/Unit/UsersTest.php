@@ -88,4 +88,8 @@ class UsersTest extends TestCase
         $this->assertGuest();
         $response->assertRedirect('/');
     }
+
+    public function testChangePassword(){
+
+    }
 }
