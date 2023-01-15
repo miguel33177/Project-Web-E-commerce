@@ -41,7 +41,7 @@
                         <div class="imgProduct">
                             <div>
                                 <img src="{{ asset($product->photo) }}" width='400' height='400'
-                                    class="img img-responsive" />
+                                    class="img img-responsive" alt="Photo Product"/>
                             </div>
                         </div>
                     </div>

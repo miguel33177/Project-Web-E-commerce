@@ -46,7 +46,7 @@ Online shopping | My products
             <td>{{ $product->category }}</td>
             <td>{{ $product->price }} € </td>
             <td>{{ $product->state }} </td>
-            <td> <img src="{{ asset($product->photo) }}" width='150' height='150' class="img img-responsive" /> </td>
+            <td> <img src="{{ asset($product->photo) }}" width='150' height='150' class="img img-responsive" alt="Photo Product"/> </td>
             <td>
                 <a href="{{ route('product', [$product->nameProduct,$product->id]) }}">{{ $product->nameProduct}}</a>
             </td>

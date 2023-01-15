@@ -119,7 +119,7 @@
                     <div class="col-md-3 col-xs-6">
                         <div class="product">
                             <div class="product-img">
-                                <img src="{{ asset($userProduct->photo) }}" class="img img-responsive" />
+                                <img src="{{ asset($userProduct->photo) }}" class="img img-responsive" alt="Photo Product"/>
                                 <div class="product-label">
                                     <span class="new">NEW</span>
                                 </div>

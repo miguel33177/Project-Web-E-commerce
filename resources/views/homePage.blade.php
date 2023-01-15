@@ -15,7 +15,7 @@ Online shopping | Home page
             <div class="col-md-4 col-xs-6">
                 <div class="shop">
                     <div class="shop-img">
-                        <img src="{{ URL::asset('assets/img/shop01.png')}}" alt="">
+                        <img src="{{ URL::asset('assets/img/shop01.png')}}" alt="Photo Product">
                     </div>
                     <div class="shop-body">
                         <h3>{{$product1Collection->category}}<br>Collection</h3>
@@ -31,7 +31,7 @@ Online shopping | Home page
             <div class="col-md-4 col-xs-6">
                 <div class="shop">
                     <div class="shop-img">
-                        <img src="{{ URL::asset('assets/img/shop02.png')}}" alt="">
+                        <img src="{{ URL::asset('assets/img/shop02.png')}}" alt="Photo Product">
                     </div>
                     <div class="shop-body">
                         <h3>{{$product2Collection->category}}<br>Collection</h3>
