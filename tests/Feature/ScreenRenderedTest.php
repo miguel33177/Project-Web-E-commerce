@@ -133,6 +133,6 @@ class ScreenRenderedTest extends TestCase
         $response = $this->get('/admin');
         $response->assertStatus(302);
         $response->assertRedirect('/');
-   
     }
+    
 }
