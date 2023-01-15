@@ -82,6 +82,7 @@ class PageController extends Controller
      */
     public function payment()
     {
+
         $countCart = Cart::select('quantity')->where('userId', '=', auth()->user()->id)->sum('quantity');
         $countWishlist = Wishlist::select('*')->where('userId', '=', auth()->user()->id)->count();
         return view('payment', compact('countCart', 'countWishlist'));
