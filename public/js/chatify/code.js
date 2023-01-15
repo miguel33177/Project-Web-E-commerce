@@ -224,10 +224,10 @@ let app_modal = function ({
 }) {
   const modal = $(".app-modal[data-name=" + name + "]");
   // header
-  header ? modal.find(".app-modal-header").html(header) : "";
+
 
   // body
-  body ? modal.find(".app-modal-body").html(body) : "";
+
 
   // buttons
   buttons == true
@@ -1406,10 +1406,7 @@ $(document).ready(function () {
   });
   // Search action on keyup
   $(".messenger-search").on("keyup", function (e) {
-    $.trim($(this).val()).length > 0
-      ? $(".messenger-search").trigger("focus") + messengerSearch($(this).val())
-      : $(".messenger-tab").hide() +
-        $('.messenger-listView-tabs a[data-view="users"]').trigger("click");
+    
   });
 
   // Delete Conversation button
