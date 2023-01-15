@@ -34,6 +34,23 @@ class ScreenRenderedTest extends TestCase
 
     public function testGetAboutUsPage()
     {
+        User::create([
+            'nickname' => 'test',
+            'name' => 'test',
+            'nationality' => 'test',
+            'lastName' => 'test',
+            'email' => 'test@gmail.com',
+            'password' => Hash::make('test12345')
+        ]);
+
+        DB::table('users')->where('nickname', 'test')->limit(1)->update(array('email_verified_at' => '2023-01-07 20:48:38.000'));
+
+        $this->post('/login', [
+            'email' => 'test@gmail.com',
+            'password' => 'test12345'
+        ]);
+
+        $this->assertAuthenticated();
         $response = $this->get('/aboutUs');
         $response->assertStatus(200);
     }
