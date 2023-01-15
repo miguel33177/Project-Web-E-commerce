@@ -54,7 +54,7 @@ Online shopping | My products
             <td>
                 <a href="{{ route('editProduct', [Auth::user()->name,$product->id]) }}"><button type="submit" class="buttonDelete">Edit</button></a>
             </td>
-            <td style="width: 10%">  
+            <td style="width: 10%">
                 <form action="{{ route('deletemyProducts', [Auth::user()->name, $product->id]) }}" method="POST">
                     @csrf
                     @method('DELETE')
