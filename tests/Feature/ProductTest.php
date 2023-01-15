@@ -27,14 +27,14 @@ class ProductTest extends TestCase
             'nationality' => 'test',
             'lastName' => 'test',
             'email' => 'test7@gmail.com',
-            'password' => Hash::make('test')
+            'password' => Hash::make('test12345')
         ]);
 
         DB::table('users')->where('nickname', 'test7')->limit(1)->update(array('email_verified_at' => '2023-01-07 20:48:38.000'));
 
         $this->post('/login', [
             'email' => 'test7@gmail.com',
-            'password' => 'test'
+            'password' => 'test12345'
         ]);
 
         $this->assertAuthenticated();

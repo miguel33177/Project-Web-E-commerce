@@ -59,10 +59,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/send-email/{order}', [PdfEmailController::class, 'sendMailWithPDF'])->name('sendMailWithPDF');
     Route::put('/updatePasword', [UserController::class, 'updatePassword'])->name('updatePassword');
     Route::post('/download-pdf/{idOrder}', [OrderController::class, 'downloadPdf'])->name('downloadPdf');
-    Route::get('/reviews/{idSeller}', [UserController::class, 'reviewsSeller'])->name('reviewsSeller');
-    Route::post('/reviews/{idSeller}', [UserController::class, 'addReviewsSeller'])->name('addReviewsSeller');
+   
+   
 });
-
+Route::post('/reviews/{idSeller}', [ProfileController::class, 'addReviewsSeller'])->name('addReviewsSeller');
+Route::get('/reviews/{idSeller}', [ProfileController::class, 'reviewsSeller'])->name('reviewsSeller');
 Route::get('/resetPassword', [UserController::class, 'resetPassword'])->name('resetPassword');
 Route::get('/aboutUs', [PageController::class, 'aboutUs'])->name('aboutUs');
 Route::get('/product/{productName}/{productId}', [ProductController::class, 'product'])->name('product');

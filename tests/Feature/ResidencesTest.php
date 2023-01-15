@@ -25,14 +25,14 @@ class ResidencesTest extends TestCase
             'nationality' => 'test',
             'lastName' => 'test',
             'email' => 'testResidences@gmail.com',
-            'password' => Hash::make('test')
+            'password' => Hash::make('test12345')
         ]);
 
         DB::table('users')->where('nickname', 'testResidences')->limit(1)->update(array('email_verified_at' => '2023-01-07 20:48:38.000'));
       
         $this->post('/login', [
             'email' => 'testResidences@gmail.com',
-            'password' => 'test'
+            'password' => 'test12345'
         ]);
 
         $this->assertAuthenticated();

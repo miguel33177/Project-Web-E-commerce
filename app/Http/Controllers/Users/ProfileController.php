@@ -11,13 +11,11 @@ use App\Models\Category;
 use App\Models\Review;
 use Illuminate\Http\Request;
 use App\Models\Wishlist;
+use Illuminate\Support\Facades\DB;
 
 class ProfileController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware(['auth', 'verified']);
-    }
+
 
     /**
      * Function to display the user's information in the view my Profile and also all the products listed by that user
@@ -39,7 +37,7 @@ class ProfileController extends Controller
         if (auth()->check()) {
             $countWishlist = Wishlist::select('*')->where('userId', '=', auth()->user()->id)->count();
             $countCart = Cart::select('quantity')->where('userId', '=', auth()->user()->id)->sum('quantity');
-            return view('myProfile', compact('user', 'userProducts', 'photoExists', 'countWishlist', 'countCart', 'countReviews','reviewAverage'));
+            return view('myProfile', compact('user', 'userProducts', 'photoExists', 'countWishlist', 'countCart', 'countReviews', 'reviewAverage'));
         }
         return view('myProfile', compact('user', 'userProducts', 'photoExists', 'countReviews', 'reviewAverage'));
     }
@@ -63,5 +61,62 @@ class ProfileController extends Controller
         $countWishlist = Wishlist::select('*')->where('userId', '=', auth()->user()->id)->count();
         $countCart = Cart::select('quantity')->where('userId', '=', auth()->user()->id)->sum('quantity');
         return view('myAccount', compact('countWishlist', 'countCart'));
+    }
+    /**
+     * Allows user to view seller reviews and access to links that allow you to check the profile of the person who commented.
+     * @param mixed $sellerId
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function reviewsSeller($sellerId)
+    {
+        if (auth()->check()) {
+            $countCart = Cart::select('quantity')->where('userId', '=', auth()->user()->id)->sum('quantity');
+            $countWishlist = Wishlist::select('*')->where('userId', '=', auth()->user()->id)->count();
+            $reviews = DB::table('reviews')
+                ->join('users', 'users.id', 'reviews.userId')
+                ->select('users.nickname', 'reviews.*')
+                ->where('reviews.sellerId', $sellerId)
+                ->paginate(4);
+            $countReviews = Review::select('*')->where('userId', auth()->user()->id)->where('sellerId', $sellerId)->count();
+            return view('reviewsSeller', compact('countCart', 'countWishlist', 'sellerId', 'reviews', 'countReviews'));
+        }
+        $reviews = DB::table('reviews')
+            ->join('users', 'users.id', 'reviews.userId')
+            ->select('users.nickname', 'reviews.*')
+            ->where('reviews.sellerId', $sellerId)
+            ->paginate(4);
+        $countReviews = Review::select('*')->where('sellerId', $sellerId)->count();
+        return view('reviewsSeller', compact('sellerId', 'countReviews', 'reviews'));
+    }
+
+    /**
+     * Allows user to review a seller.
+     * @param Request $request
+     * @param mixed $sellerId
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function addReviewsSeller(Request $request, $sellerId)
+    {
+        $request->validate([
+            'review' => ['required', 'min:0', 'max:10'],
+            'comment' => ['required', 'string']
+        ]);
+
+        $review = new Review();
+        $review->userId = auth()->user()->id;
+        $review->sellerId = $sellerId;
+        $review->review = $request['review'];
+        $review->comment = $request['comment'];
+        $review->save();
+
+        $countCart = Cart::select('quantity')->where('userId', '=', auth()->user()->id)->sum('quantity');
+        $countWishlist = Wishlist::select('*')->where('userId', '=', auth()->user()->id)->count();
+        $reviews = DB::table('users')
+            ->join('reviews', 'reviews.userId', 'users.id')
+            ->select('users.nickname', 'reviews.*')
+            ->where('reviews.sellerId', $sellerId)
+            ->paginate(4);
+        $countReviews = Review::select('*')->where('userId', auth()->user()->id)->where('sellerId', $sellerId)->count();
+        return view('reviewsSeller', compact('countCart', 'countWishlist', 'sellerId', 'reviews', 'countReviews'));
     }
 }

@@ -43,9 +43,23 @@ class ScreenRenderedTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function payment()
-    {
-        $response = $this->get('/payment');
+    public function testGetReviewsSeller(){
+        $user = User::create([
+            'nickname' => 'test',
+            'name' => 'test',
+            'nationality' => 'test',
+            'lastName' => 'test',
+            'email' => 'test@gmail.com',
+            'password' => Hash::make('test12345')
+        ]);
+
+        $this->post('/login', [
+            'email' => 'test@gmail.com',
+            'password' => 'test12345'
+        ]);
+
+        $this->assertAuthenticated();
+        $response = $this->get('/reviews/' . $user->id);
         $response->assertStatus(200);
     }
 
@@ -57,14 +71,14 @@ class ScreenRenderedTest extends TestCase
             'nationality' => 'test',
             'lastName' => 'test',
             'email' => 'test@gmail.com',
-            'password' => Hash::make('test')
+            'password' => Hash::make('test12345')
         ]);
 
         DB::table('users')->where('nickname', 'test')->limit(1)->update(array('email_verified_at' => '2023-01-07 20:48:38.000'));
 
         $this->post('/login', [
             'email' => 'test@gmail.com',
-            'password' => 'test'
+            'password' => 'test12345'
         ]);
 
         $this->assertAuthenticated();
@@ -81,7 +95,7 @@ class ScreenRenderedTest extends TestCase
             'nationality' => 'test',
             'lastName' => 'test',
             'email' => 'test@gmail.com',
-            'password' => Hash::make('test')
+            'password' => Hash::make('test12345')
         ]);
 
         DB::table('users')->where('nickname', 'test')->limit(1)->update(array('email_verified_at' => '2023-01-07 20:48:38.000'));
@@ -107,7 +121,7 @@ class ScreenRenderedTest extends TestCase
             'nationality' => 'test',
             'lastName' => 'test',
             'email' => 'test@gmail.com',
-            'password' => Hash::make('test')
+            'password' => Hash::make('test12345')
         ]);
        
         
@@ -117,7 +131,7 @@ class ScreenRenderedTest extends TestCase
 
         $this->post('/login', [
             'email' => 'test@gmail.com',
-            'password' => 'test'
+            'password' => 'test12345'
         ]);
 
         $this->assertAuthenticated();
@@ -135,14 +149,14 @@ class ScreenRenderedTest extends TestCase
             'nationality' => 'test',
             'lastName' => 'test',
             'email' => 'test@gmail.com',
-            'password' => Hash::make('test')
+            'password' => Hash::make('test12345')
         ]);
 
         DB::table('users')->where('nickname', 'test')->limit(1)->update(array('email_verified_at' => '2023-01-07 20:48:38.000'));
 
         $this->post('/login', [
             'email' => 'test@gmail.com',
-            'password' => 'test'
+            'password' => 'test12345'
         ]);
 
         $this->assertAuthenticated();

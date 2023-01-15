@@ -25,6 +25,7 @@
                     <div class="row">
                         <!-- Reviews -->
                         <div class="col-md-8" style="margin-left:5%">
+                        
                             @foreach ($reviews as $review)
                             <div id="reviews">
                                     <ul class="reviews">
@@ -47,6 +48,7 @@
                             {!! $reviews->links('pagination::bootstrap-4') !!}
                           
                         </div>
+                        @if (Auth::check())
                         @if (($sellerId != Auth::user()->id) && $countReviews == 0)
                         
                         <div class="col-md-3" style="margin-top:-35px;margin-left:-10%;">
@@ -66,6 +68,7 @@
                                 </form>
                             </div>
                         </div>
+                        @endif
                         @endif
                     </div>
 

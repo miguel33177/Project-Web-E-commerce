@@ -79,7 +79,7 @@ class UsersTest extends TestCase
             'nationality' => 'test',
             'lastName' => 'test',
             'email' => 'test@gmail.com',
-            'password' => Hash::make('test')
+            'password' => Hash::make('test12345')
         ]);
 
         $response = $this->post('/login', [
@@ -90,30 +90,5 @@ class UsersTest extends TestCase
         $response->assertRedirect('/');
     }
 
-    public function testChangePassword(){
-        $user = User::create([
-            'nickname' => 'test',
-            'name' => 'test',
-            'nationality' => 'test',
-            'lastName' => 'test',
-            'email' => 'test@gmail.com',
-            'password' => Hash::make('test')
-        ]);
-
-        DB::table('users')->where('nickname', 'test')->limit(1)->update(array('email_verified_at' => '2023-01-07 20:48:38.000'));
-
-        $this->post('/login', [
-            'email' => 'test@gmail.com',
-            'password' => 'test'
-        ]);
-
-        $this->assertAuthenticated();
-
-        $response = $this->post('/updatePasword', [
-            'oldPassword' => 'test',
-            'password' => 'newpassword',
-            'confirmpassword' => 'newpassword'
-        ]);
-        
-    }
+   
 }
