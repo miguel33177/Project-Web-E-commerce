@@ -54,9 +54,31 @@ class ScreenRenderedTest extends TestCase
         $response = $this->get('/aboutUs');
         $response->assertStatus(200);
     }
+
+
     public function testGetSearchPage()
     {
         $response = $this->get('/search');
+        $response->assertStatus(200);
+    }
+
+    public function testProfilePage(){
+         $user = User::create([
+            'nickname' => 'test',
+            'name' => 'test',
+            'nationality' => 'test',
+            'lastName' => 'test',
+            'email' => 'test@gmail.com',
+            'password' => Hash::make('test12345')
+        ]);
+
+        $this->post('/login', [
+            'email' => 'test@gmail.com',
+            'password' => 'test12345'
+        ]);
+        
+        $this->assertAuthenticated();
+        $response = $this->get('/myProfile/' . $user->nickname);
         $response->assertStatus(200);
     }
 
