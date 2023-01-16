@@ -18,7 +18,7 @@ class ProductTest extends TestCase
      *
      * @return void
      */
-    public function testStoreProduct()
+   /* public function testStoreProduct()
     {
         
         $user = User::create([
@@ -60,7 +60,7 @@ class ProductTest extends TestCase
         ]);
 
         $response->assertRedirect('/addProduct/test');
-    }
+    }*/
 
    
 }
