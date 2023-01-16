@@ -34,9 +34,20 @@ jobs:
           with:
             php-version: '8.2'
             coverage: xdebug
+        - name: Validate composer.json and composer.lock
+        run: composer validate --strict
+
+       - name: Cache Composer packages
+         id: composer-cache
+         uses: actions/cache@v3
+         with:
+          path: vendor
+          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php-
             
-        - name: Install dependencies with composer
-          run: composer update --no-ansi --no-interaction
+      - name: Install dependencies
+         run: composer install --prefer-dist --no-progress
  --no-progress
         - name: Run tests
           run: ./vendor/bin/phpunit --verbose tests
