@@ -39,5 +39,5 @@ jobs:
           run: composer update --no-ansi --no-interaction
  --no-progress
           
-        - name: Run tests with php artisan
-          run: php artisan test
+        - name: Run tests with phpunit/phpunit
+          run: ./vendor/bin/phpunit --verbose tests
