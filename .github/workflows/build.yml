@@ -44,8 +44,5 @@ jobs:
           key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
           restore-keys: |
             ${{ runner.os }}-php-
-
-      - name: Install dependencies with composer
-        run: composer install
       - name: Run tests
         run: ./vendor/bin/phpunit --verbose test/Unit
