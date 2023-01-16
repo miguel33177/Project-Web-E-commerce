@@ -1,13 +1,26 @@
-name: CI
- 
+name: Build
 on:
-  - pull_request
-  - push
-  
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened]
 jobs:
+  sonarcloud:
+    name: SonarCloud
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
   tests:
       name: Tests
- 
       runs-on: ubuntu-latest
       
       steps:
@@ -33,9 +46,3 @@ jobs:
         - name: Fix code coverage paths
           run: sed -i 
 's@'$GITHUB_WORKSPACE'@/github/workspace/@g' coverage.xml
-          
-        - name: SonarCloud Scan
-          uses: SonarSource/sonarcloud-github-action@master
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }
