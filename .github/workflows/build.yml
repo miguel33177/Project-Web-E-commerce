@@ -20,17 +20,15 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   tests:
-    name: Tests
+    name: PHPUnit
     runs-on: ubuntu-latest
     needs: sonarcloud
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
         with:
-          fetch-depth: 0
+        fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
       - name: Validate composer.json and composer.lock
         run: composer validate --strict
-
       - name: Cache Composer packages
         id: composer-cache
         uses: actions/cache@v3
@@ -39,8 +37,12 @@ jobs:
           key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
           restore-keys: |
             ${{ runner.os }}-php-
-
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress
       - name: Run tests
-        run: ./vendor/bin/phpunit --verbose tests
+        run: ./vendor/bin/phpunit --verbose tests/Unit
+
+
+
+
+
